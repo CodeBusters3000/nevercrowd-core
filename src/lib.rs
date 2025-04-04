@@ -7,23 +7,23 @@ use num_enum::{IntoPrimitive, TryFromPrimitive};
 pub struct BLEData {
     pub device_id: String,
     pub time_stamp: Instant,
-    pub adv_flags: Option<AdvFlag>,
+    // pub adv_flags: Option<AdvFlag>,
     pub payload: Vec<u8>,
-    pub service_uuids: Vec<BleUuid>,
+    // pub service_uuids: Vec<BleUuid>,
     pub name: Option<String>,
     pub tx_power: Option<u8>,
-    pub service_uuid: Option<BleUuid>,
-    pub service_data: Option<Vec<u8>>,
+    // pub service_uuid: Option<BleUuid>,
+    // pub service_data: Option<Vec<u8>>,
     pub company_identifier: Option<u16>,
     pub manufacture_payload: Option<Vec<u8>>,
-    pub adv_type: AdvType,
+    // pub adv_type: AdvType,
     pub rssi: i8,
     // sid: u8
     // prim_phy: PrimPhy,
     // sec_phy: Option<SecPhy>,
     // periodic_itvl: u16
     pub addr: [u8; 6],
-    pub addr_type: BLEAddressType,
+    // pub addr_type: BLEAddressType,
 }
 
 /// A Bluetooth UUID.
