@@ -7,31 +7,23 @@ use num_enum::{IntoPrimitive, TryFromPrimitive};
 pub struct BLEData {
     pub device_id: String,
     pub time_stamp: Instant,
-    pub ble_advertised_data: BLEAdvertisedData,
-    pub ble_advertised_device: BLEAdvertisedDevice,
-}
-
-#[derive(Debug, Clone)]
-pub struct BLEAdvertisedData {
     pub adv_flags: Option<AdvFlag>,
     pub payload: Vec<u8>,
     pub service_uuids: Vec<BleUuid>,
     pub name: Option<String>,
     pub tx_power: Option<u8>,
-    pub service_data: Option<BLEServiceData>,
-    pub manufacture_data: Option<ManufactureData>,
-}
-
-#[derive(Debug, Clone)]
-pub struct ManufactureData {
-    pub company_identifier: u16,
-    pub payload: Vec<u8>,
-}
-
-#[derive(Debug, Clone)]
-pub struct BLEServiceData {
-    pub uuid: BleUuid,
-    pub service_data: Vec<u8>,
+    pub service_uuid: Option<BleUuid>,
+    pub service_data: Option<Vec<u8>>,
+    pub company_identifier: Option<u16>,
+    pub manufacture_payload: Option<Vec<u8>>,
+    pub adv_type: AdvType,
+    pub rssi: i8,
+    // sid: u8
+    // prim_phy: PrimPhy,
+    // sec_phy: Option<SecPhy>,
+    // periodic_itvl: u16
+    pub addr: [u8; 6],
+    pub addr_type: BLEAddressType,
 }
 
 /// A Bluetooth UUID.
@@ -62,17 +54,6 @@ bitflags! {
   }
 }
 
-#[derive(Debug, Clone)]
-pub struct BLEAdvertisedDevice {
-    pub addr: BLEAddress,
-    pub adv_type: AdvType,
-    pub rssi: i8,
-    // sid: u8
-    // prim_phy: PrimPhy,
-    // sec_phy: Option<SecPhy>,
-    // periodic_itvl: u16
-}
-
 #[repr(u8)]
 #[derive(Copy, Clone, PartialEq, Debug, TryFromPrimitive, IntoPrimitive)]
 pub enum PrimPhy {
@@ -95,12 +76,6 @@ pub enum AdvType {
     ScanResponse,
     // #[cfg(esp_idf_bt_nimble_ext_adv)]
     // Extended(u8),
-}
-
-#[derive(Debug, Clone)]
-pub struct BLEAddress {
-    pub addr: [u8; 6],
-    pub addr_type: BLEAddressType,
 }
 
 /// Bluetooth Device address type
