@@ -1,6 +1,5 @@
 use std::time::Instant;
 
-use num_enum::TryFromPrimitive;
 use overcrowd_core::{
     AdvFlag, AdvType, BLEAddress, BLEAddressType, BLEAdvertisedData, BLEAdvertisedDevice, BLEData,
     BLEServiceData, BleUuid, ManufactureData,
