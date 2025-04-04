@@ -1,12 +1,12 @@
-use std::time::Instant;
-
 use bitflags::bitflags;
+use chrono::{DateTime, Utc};
 use num_enum::{IntoPrimitive, TryFromPrimitive};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BLEData {
     pub device_id: String,
-    pub time_stamp: Instant,
+    pub time_stamp: DateTime<Utc>,
     // pub adv_flags: Option<AdvFlag>,
     pub payload: Vec<u8>,
     // pub service_uuids: Vec<BleUuid>,
