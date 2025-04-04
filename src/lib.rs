@@ -3,21 +3,23 @@ use std::time::Instant;
 use bitflags::bitflags;
 use num_enum::{IntoPrimitive, TryFromPrimitive};
 
+#[derive(Debug, Clone)]
 pub struct BLEData {
-    device_id: String,
-    time_stamp: Instant,
-    ble_advertised_data: BLEAdvertisedData,
-    ble_advertised_device: BLEAdvertisedDevice,
+    pub device_id: String,
+    pub time_stamp: Instant,
+    pub ble_advertised_data: BLEAdvertisedData,
+    pub ble_advertised_device: BLEAdvertisedDevice,
 }
 
+#[derive(Debug, Clone)]
 pub struct BLEAdvertisedData {
-    adv_flags: Option<AdvFlag>,
-    payload: Vec<u8>,
-    service_uuids: Vec<BleUuid>,
-    name: Option<String>,
-    tx_power: Option<u8>,
-    service_data: Option<BLEServiceData>,
-    manufacture_data: Option<ManufactureData>,
+    pub adv_flags: Option<AdvFlag>,
+    pub payload: Vec<u8>,
+    pub service_uuids: Vec<BleUuid>,
+    pub name: Option<String>,
+    pub tx_power: Option<u8>,
+    pub service_data: Option<BLEServiceData>,
+    pub manufacture_data: Option<ManufactureData>,
 }
 
 #[derive(Debug, Clone)]
@@ -60,10 +62,11 @@ bitflags! {
   }
 }
 
+#[derive(Debug, Clone)]
 pub struct BLEAdvertisedDevice {
-    addr: BLEAddress,
-    adv_type: AdvType,
-    rssi: i8,
+    pub addr: BLEAddress,
+    pub adv_type: AdvType,
+    pub rssi: i8,
     // sid: u8
     // prim_phy: PrimPhy,
     // sec_phy: Option<SecPhy>,
@@ -94,13 +97,14 @@ pub enum AdvType {
     // Extended(u8),
 }
 
+#[derive(Debug, Clone)]
 pub struct BLEAddress {
-    addr: [u8; 6],
-    addr_type: BLEAddressType,
+    pub addr: [u8; 6],
+    pub addr_type: BLEAddressType,
 }
 
 /// Bluetooth Device address type
-#[derive(PartialEq, Eq, TryFromPrimitive)]
+#[derive(PartialEq, Eq, TryFromPrimitive, Debug, Clone)]
 #[repr(u8)]
 pub enum BLEAddressType {
     Public = 0 as _,
